@@ -1,4 +1,4 @@
-package com.mk.dao;
+package com.mk.dao.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mk.dao.TestDao;
 import com.mk.model.Contact;
 
 @Repository
