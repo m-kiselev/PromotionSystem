@@ -50,4 +50,10 @@ public class Contact {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("Contact: [id = %s, name = %s, email = %s]",
+				id, name, email);
+	}
 }

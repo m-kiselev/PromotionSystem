@@ -7,7 +7,7 @@
 
     <properties>
         <java-version>1.6</java-version>
-        <org.springframework-version>3.1.0.RELEASE</org.springframework-version>
+        <org.springframework-version>3.1.3.RELEASE</org.springframework-version>
         <org.aspectj-version>1.6.9</org.aspectj-version>
         <org.slf4j-version>1.5.10</org.slf4j-version>
        <jackson.version>1.9.10</jackson.version>
@@ -32,13 +32,28 @@
             <version>${org.springframework-version}</version>
         </dependency>
 
-        <!-- Jackson JSON Mapper -->
+        <!-- Jackson JSON Mapper 
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
             <version>${jackson.version}</version>
-        </dependency>
+        </dependency>-->
 
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.1.2</version>
+        </dependency>
         <!-- AspectJ -->
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -152,13 +167,28 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+              <groupId>org.apache.commons</groupId>
+              <artifactId>commons-lang3</artifactId>
+              <version>3.3.2</version>
+        </dependency>
         
-        
+        <!-- AOP dependency -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2</version>
+        </dependency>
     </dependencies>
 
 
   <build>
     <plugins>
+      <plugin>
+          <groupId>org.mortbay.jetty</groupId>
+          <artifactId>jetty-maven-plugin</artifactId>
+          <version>8.1.12.v20130726</version>
+      </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>

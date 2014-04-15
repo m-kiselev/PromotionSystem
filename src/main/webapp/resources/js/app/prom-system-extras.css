@@ -1,0 +1,57 @@
+.promsystem-bg > div {
+	background-color: #dfe9f6
+}
+
+.left-scroll > .x-panel-body > .promsystem-bg {
+    direction:ltr;
+}
+
+.tb-title {
+    color:#000;
+    font: 18px tahoma,arial,verdana,sans-serif;
+    font-weight: bold;
+}
+
+.leftmenu {
+    height: 100%;
+    padding:0 10px;
+    background-color: #dfe9f6;
+    overflow-y: auto;
+    direction:rtl; 
+    text-align:left;
+}
+.leftmenu p {
+    color:#000;
+    font: 12px tahoma,arial,verdana,sans-serif;
+    font-weight: bold;
+}
+.leftmenu ul {
+    list-style:none;
+    margin:3px 0 10px 10px;
+}
+.leftmenu ul li {
+    text-decoration:underline;
+    color:#000;
+    font: 12px tahoma,arial,verdana,sans-serif;
+    margin:3px 0;
+}
+.leftmenu ul li:hover {
+    cursor:pointer;
+}
+.leftmenu ul li:hover {
+     cursor:pointer;
+     text-decoration:none;
+ }
+
+.hotel-icon {
+	background-image: url(../../images/hotel.png) !important;
+}
+.times-icon {
+    background-image: url(../../images/times.png) !important;
+}
+.document-icon {
+    background-image: url(../../images/document.png) !important;
+}
+.x-right-button {
+    float: right;
+}

@@ -2,19 +2,35 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:mvc="http://www.springframework.org/schema/mvc" 
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
-        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
-        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
         http://www.springframework.org/schema/context 
-        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
     <context:component-scan base-package="com.mk" />
-    <mvc:annotation-driven />
-    
+
+    <mvc:annotation-driven>
+        <mvc:argument-resolvers>
+            <bean class="com.mk.web.SingleJsonArgumentResolver"/>
+            <bean class="com.mk.web.ClassNameArgumentResolver">
+                <property name="mappings">
+                  <map>
+                      <entry key="contract"  value="com.mk.model.Contract"/>
+                      <entry key="manager"   value="com.mk.model.Manager"/>
+                      <entry key="service"   value="com.mk.model.Service"/>
+                      <entry key="contact"   value="com.mk.model.Contact"/>
+                      <entry key="monthPlan" value="com.mk.model.MonthPlan"/>
+                  </map>
+                </property>
+            </bean>
+        </mvc:argument-resolvers>
+    </mvc:annotation-driven>
+
     <mvc:resources mapping="/resources/js/**" location="/resources/js/" />
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -32,16 +48,17 @@
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="configLocation">
-            <value>classpath:hibernate.cfg.xml</value>
-        </property>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.SQLiteDialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.show_sql">false</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
+        </property>
+        <property name="packagesToScan">
+            <list>
+                <value>com.mk.model</value>
+            </list>
         </property>
     </bean>
 
