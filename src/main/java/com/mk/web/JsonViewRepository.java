@@ -36,37 +36,19 @@ public class JsonViewRepository {
         put(Contract.class, RemoveHibProps.class);
         put(Manager.class, RemoveHibProps.class);
         put(Service.class, RemoveHibProps.class);
-        put(Contact.class, RemoveHibProps.class);
     }});
 
     public JsonView getMinimalListView() {
         return minimalListView;
     }
     
-    private static final JsonView listContactView = new JsonView(new HashMap<java.lang.Class<?>,java.lang.Class<?>>() {{
-        put(Contact.class, RemoveHibProps.class);
-    }});
-    
-    private static final JsonView listContractView = new JsonView(new HashMap<java.lang.Class<?>,java.lang.Class<?>>() {{
-    	put(Contract.class, RemoveHibProps.class);
-    }});
-    
-    private static final JsonView listManagerView = new JsonView(new HashMap<java.lang.Class<?>,java.lang.Class<?>>() {{
-    	put(Manager.class, RemoveHibProps.class);
-    }});
-    
-    private static final JsonView listServiceView = new JsonView(new HashMap<java.lang.Class<?>,java.lang.Class<?>>() {{
-    	put(Service.class, RemoveHibProps.class);
-    }});
-    
     /**
      * The main view for the list entities.
      */
     private static final Map<Class<?>, JsonView> viewsForLists = new HashMap<Class<?>, JsonView>(){{
-        put(Contract.class,   listContractView);
-        put(Manager.class,    listManagerView);
-        put(Service.class,    listServiceView);
-        put(Contact.class,    listContactView);
+        put(Contract.class,   minimalListView);
+        put(Manager.class,    minimalListView);
+        put(Service.class,    minimalListView);
     }};
 
     public static JsonView getViewForList(Class<?> clazz) {

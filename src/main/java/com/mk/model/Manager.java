@@ -7,16 +7,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "manager")
-public class Manager {
+public class Manager extends Person {
 
-	@Id
-    @GeneratedValue
-	private Integer id;
-	private String number;
-	private String fio;
-	private String phone;
-	private String passportData;
-	private String adress;
 	private Integer hourOfDay;
 	private Integer salary;
 
@@ -24,48 +16,23 @@ public class Manager {
 	}
 
 	public Manager(String number, String fio, Integer hourOfDay, Integer salary) {
-		this.number = number;
-		this.fio = fio;
+		super(number, fio);
+		this.hourOfDay = hourOfDay;
+		this.salary = salary;
+	}
+	
+	public Manager(String number, String fio, String phone, String passportData, Integer hourOfDay, Integer salary) {
+		super(number, fio, phone, passportData);
+		this.hourOfDay = hourOfDay;
+		this.salary = salary;
+	}
+	
+	public Manager(String number, String fio, String phone, String passportData, String adress, Integer hourOfDay, Integer salary) {
+		super(number, fio, phone, passportData, adress);
 		this.hourOfDay = hourOfDay;
 		this.salary = salary;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getNumber() {
-		return number;
-	}
-	public void setNumber(String number) {
-		this.number = number;
-	}
-	public String getFio() {
-		return fio;
-	}
-	public void setFio(String fio) {
-		this.fio = fio;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	public String getPassportData() {
-		return passportData;
-	}
-	public void setPassportData(String passportData) {
-		this.passportData = passportData;
-	}
-	public String getAdress() {
-		return adress;
-	}
-	public void setAdress(String adress) {
-		this.adress = adress;
-	}
 	public Integer getHourOfDay() {
 		return hourOfDay;
 	}
@@ -81,7 +48,7 @@ public class Manager {
 
 	@Override
 	public String toString() {
-		return String.format("Contract: [id = %s, number = %s, fio = %s, hourOfDay = %s, salary = %s]",
-				id, number, fio, hourOfDay, salary);
+		return String.format("Contract: [hourOfDay = %s, salary = %s]",
+				hourOfDay, salary);
 	}
 }

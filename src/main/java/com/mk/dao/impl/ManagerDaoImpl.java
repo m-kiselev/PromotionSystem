@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mk.dao.ManagerDao;
-import com.mk.model.Contact;
 import com.mk.model.Manager;
 
 @Repository

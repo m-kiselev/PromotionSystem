@@ -60,7 +60,6 @@ public class CreateUpdateListController extends AbstractController {
 			@RequestParam(value = "limit", required = false) Integer count,
 			@DefinedFromRequest Class<?> clazz) throws IOException {
 
-		System.out.println(clazz.getName());
 		return listEntities(clazz, page, count, JsonViewRepository.getViewForList(clazz));
 	}
 	

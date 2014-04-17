@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mk.dao.ContractDao;
 import com.mk.model.Contract;
-import com.mk.model.Manager;
 
 @Repository
 @Transactional

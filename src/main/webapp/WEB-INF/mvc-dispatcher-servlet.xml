@@ -23,7 +23,6 @@
                       <entry key="contract"  value="com.mk.model.Contract"/>
                       <entry key="manager"   value="com.mk.model.Manager"/>
                       <entry key="service"   value="com.mk.model.Service"/>
-                      <entry key="contact"   value="com.mk.model.Contact"/>
                       <entry key="monthPlan" value="com.mk.model.MonthPlan"/>
                   </map>
                 </property>
@@ -31,8 +30,15 @@
         </mvc:argument-resolvers>
     </mvc:annotation-driven>
 
-    <mvc:resources mapping="/resources/js/**" location="/resources/js/" />
 
+    <mvc:resources mapping="/app/**" location="/resources/js/app/" />
+    <mvc:resources mapping="/extjs/**" location="/resources/js/extjs/" />
+    <!-- 
+    <mvc:resources mapping="/ext-all*" location="/extjs/" />
+    <mvc:resources mapping="/src/ux/**" location="/extjs/ux/" />
+    <mvc:resources mapping="/app/**" location="/app/" />
+    <mvc:resources mapping="/img/**" location="/img/" />
+ -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
         <property name="prefix" value="/WEB-INF/pages/" />
