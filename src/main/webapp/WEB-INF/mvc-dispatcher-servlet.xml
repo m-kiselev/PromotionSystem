@@ -24,6 +24,9 @@
                       <entry key="manager"   value="com.mk.model.Manager"/>
                       <entry key="service"   value="com.mk.model.Service"/>
                       <entry key="monthPlan" value="com.mk.model.MonthPlan"/>
+                      <entry key="headdep"   value="com.mk.model.HeadDep"/>
+                      <entry key="iclient"   value="com.mk.model.IndividualClient"/>
+                      <entry key="lclient"   value="com.mk.model.LegalClient"/>
                   </map>
                 </property>
             </bean>

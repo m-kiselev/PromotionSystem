@@ -27,7 +27,8 @@ public class CreateUpdateListController extends AbstractController {
 	private static final Logger	log	= LoggerFactory.getLogger(CreateUpdateListController.class);
 
 	@SuppressWarnings({ "unchecked" })
-	@RequestMapping(method = RequestMethod.POST, value = "/{entityName:contract|manager|service}/delete")
+	@RequestMapping(method = RequestMethod.POST, value = "/{entityName:contract|manager|service|headdep|"
+			+ "iclient|lclient}/delete")
 	@ResponseBody
 	@Transactional
 	public Object delete(@DefinedFromRequest Object entity) {
@@ -40,7 +41,7 @@ public class CreateUpdateListController extends AbstractController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(
 			method = RequestMethod.POST,
-			value = "/{entityName:contract|manager|service}/edit")
+			value = "/{entityName:contract|manager|service|headdep|iclient|lclient}/edit")
 	@ResponseBody
 	@Transactional
 	public Object createOrUpdate(@DefinedFromRequest Class<?> clazz,
@@ -52,7 +53,7 @@ public class CreateUpdateListController extends AbstractController {
 
 	@RequestMapping(
 			method = RequestMethod.GET,
-			value = "/{entityName:contract|manager|service|contact}/list",
+			value = "/{entityName:contract|manager|service|contact|headdep|iclient|lclient}/list",
 			produces = "application/json")
 	@ResponseBody
 	@Transactional(readOnly = true)

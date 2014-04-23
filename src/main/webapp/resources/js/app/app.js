@@ -53,6 +53,8 @@ Ext.application({
                         '<li onclick="openBrowser(\'mainmonthplanbrowser\', \'monthplanbrowser\')">Планы на месяц</li></ul>' +
                         '<p>Нематериальные</p><ul>' +
                         '<li onclick="openBrowser(\'maincomplexbrowser\', \'complexbrowser\')">Комплексы</li></ul>' +
+                        '<p>Справочники</p><ul>' +
+                        '<li onclick="openClientPanel()">Клиенты</li></ul>' +
                         '<p>Отчеты</p><ul>' +
                         '<li onclick="openBrowser(\'mainsalaryreportbrowser\', \'salaryreportbrowser\')">Отчет по ЗП</li>' +
                         '<li onclick="openBrowser(\'maincontractreportbrowser\', \'contractreportbrowser\')">Отчет об одобрении договоров</li>' +
@@ -77,7 +79,7 @@ Ext.application({
 
 function addToMainTab(id, method) {
     var tabs = Ext.getCmp('mainPanel');
-    var view = tabs.down('grid[id='+id+']');
+    var view = Ext.getCmp(id);
     
     if (view == null) {
         view = method();
@@ -96,11 +98,23 @@ function openBrowser(browserName, widgetName) {
         var view = Ext.widget(widgetName, {
             id: browserName
         });
-        view.getStore().load();
+        if (view.columns != null) { // not load store, if view not grid
+        	view.getStore().load();
+        }
         return view;
     });
 }
 
+function openClientPanel() {
+    addToMainTab('mainclientpanel', function() {
+        var view = Ext.widget('clientpanel', {
+            id: 'mainclientpanel'
+        });
+
+        reconfigureStoreInClientPanel(view);
+        return view;
+    });
+}
 /**
  * Added red '*' for requared field;
  * Example: {xtype: 'textfield', afterLabelTextTpl: markFieldRequired},

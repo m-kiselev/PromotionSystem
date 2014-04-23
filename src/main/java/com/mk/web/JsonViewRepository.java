@@ -34,8 +34,12 @@ public class JsonViewRepository {
         
     private static final JsonView minimalListView = new JsonView(new HashMap<java.lang.Class<?>,java.lang.Class<?>>() {{
         put(Contract.class, RemoveHibProps.class);
-        put(Manager.class, RemoveHibProps.class);
-        put(Service.class, RemoveHibProps.class);
+        put(Manager.class,  RemoveHibProps.class);
+        put(Service.class,  RemoveHibProps.class);
+        put(MonthPlan.class,RemoveHibProps.class);
+        put(HeadDep.class,  RemoveHibProps.class);
+        put(IndividualClient.class, RemoveHibProps.class);
+        put(LegalClient.class,      RemoveHibProps.class);
     }});
 
     public JsonView getMinimalListView() {
@@ -49,9 +53,15 @@ public class JsonViewRepository {
         put(Contract.class,   minimalListView);
         put(Manager.class,    minimalListView);
         put(Service.class,    minimalListView);
+        put(MonthPlan.class,  minimalListView);
+        put(HeadDep.class,    minimalListView);
+        put(IndividualClient.class, minimalListView);
+        put(LegalClient.class,      minimalListView);
     }};
 
     public static JsonView getViewForList(Class<?> clazz) {
+    	System.out.println(log);
+    	log.info("clazz = {}", clazz.toString());
         JsonView vv = viewsForLists.get(clazz);
         if (vv == null) {
             log.warn("View for list is not defined for {}, using RemoveHibProps", clazz.getName());
