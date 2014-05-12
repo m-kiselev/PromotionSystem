@@ -1,25 +1,40 @@
 package com.mk.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.apache.commons.lang3.time.DateUtils;
 
 @Entity
 @Table(name = "contract")
-public class Contract {
+public class Contract implements Identifiable<Long> {
 	
 	@Id
     @GeneratedValue
-	private Integer id;
+	private long id;
 	private String number;
 	private boolean isApproved = false;
+	
+	@Temporal(TemporalType.DATE)
 	private Date approvedDate;
 	private String comment;
+	
+	/* manager data */
 	private Integer managerId;
+	private String  managerName;
+	
+	/* manager data */
 	private Integer clientId;
+	private boolean clientIsIndivid = true;
+	private String  clientName;
+	
 	private EnumContractStatus status;
 
 	public Contract() {
@@ -31,11 +46,12 @@ public class Contract {
 		this.managerId = managerId;
 	}
 
-	public Integer getId() {
+	@Override
+	public Long getId() {
 		return id;
 	}
-
-	public void setId(Integer id) {
+	
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -60,7 +76,9 @@ public class Contract {
 	}
 
 	public void setApprovedDate(Date approvedDate) {
-		this.approvedDate = approvedDate;
+		this.approvedDate = approvedDate == null
+				? null
+				: DateUtils.truncate(approvedDate, Calendar.DATE);
 	}
 
 	public String getComment() {
@@ -95,9 +113,35 @@ public class Contract {
 		this.status = status;
 	}
 
+	public String getManagerName() {
+		return managerName;
+	}
+
+	public void setManagerName(String managerName) {
+		this.managerName = managerName;
+	}
+
+	public boolean isClientIsIndivid() {
+		return clientIsIndivid;
+	}
+
+	public void setClientIsIndivid(boolean clientIsIndivid) {
+		this.clientIsIndivid = clientIsIndivid;
+	}
+
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+	
 	@Override
 	public String toString() {
 		return String.format("Contract: [id = %s, number = %s, isApproved = %s, approvedDate = %s, comment = %s, status = %s]",
 				id, number, isApproved, approvedDate, comment, status);
 	}
+
+
 }

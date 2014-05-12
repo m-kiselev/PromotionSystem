@@ -1,9 +1,10 @@
 Ext.define('app.controller.MainController', {
     extend: 'Ext.app.Controller',
     views:  ['ManagerBrowser', 'ManagerForm', 'HeadDepBrowser', 'HeadDepForm', 'ClientPanel','IndividClientBrowser', 'IndividClientForm',
-             'LegalClientBrowser', 'LegalClientForm'],
-    stores: ['Managers', 'HeadDeps', 'IndividClients', 'LegalClients'],
-    models: ['Manager', 'HeadDep', 'IndividClient', 'LegalClient'],
+             'LegalClientBrowser', 'LegalClientForm', 'ContractBrowser', 'ContractForm', 'SelectClientWindow', 'MonthPlanBrowser',
+             'MonthPlanForm', 'ContractReportBrowser'],
+    stores: ['Managers', 'HeadDeps', 'IndividClients', 'LegalClients', 'Contracts', 'EnumContractStatus', 'MonthPlans'],
+    models: ['Manager', 'HeadDep', 'IndividClient', 'LegalClient', 'Contract', 'MonthPlan'],
     init: function(application) {
         this.control({
             'managerbrowser': {
@@ -50,9 +51,14 @@ Ext.define('app.controller.MainController', {
             'indclientform button[action=save]': {
             	click: function(button) {
             		entityCommit(button,'iclient/edit', function(){
-            			var tabs = Ext.getCmp('mainPanel');
-            			var clientpanel = tabs.down('clientpanel');
-            			reconfigureStoreInClientPanel(clientpanel);
+            			var clientpanel = Ext.getCmp('mainclientpanel');
+            			if (clientpanel != null) {
+            			    reconfigureStoreInClientPanel(clientpanel);
+            			}
+            			var windowclientpanel = Ext.getCmp('windowclientpanel');
+            			if (windowclientpanel != null) {
+            			    reconfigureStoreInClientPanel(windowclientpanel);
+            			}
             		});
             	}
             },
@@ -67,11 +73,46 @@ Ext.define('app.controller.MainController', {
             'legalclientform button[action=save]': {
             	click: function(button) {
             		entityCommit(button,'lclient/edit', function(){
-            			var tabs = Ext.getCmp('mainPanel');
-            			var clientpanel = tabs.down('clientpanel');
-            			reconfigureStoreInClientPanel(clientpanel);
+            			var clientpanel = Ext.getCmp('mainclientpanel');
+                        if (clientpanel != null) {
+                            reconfigureStoreInClientPanel(clientpanel);
+                        }
+                        var windowclientpanel = Ext.getCmp('windowclientpanel');
+                        if (windowclientpanel != null) {
+                            reconfigureStoreInClientPanel(windowclientpanel);
+                        }
             		});
             	}
+            },
+            'contractbrowser': {
+                itemdblclick: function(grid, record) {
+                    var view = Ext.widget('contractform');
+                    view.setTitle('Договор');
+                    view.down('form').loadRecord(record);
+                    view.show();
+                }
+            },
+            'contractform button[action=save]': {
+                click: function(button) {
+                    entityCommit(button,'contract/edit', function(){
+                        Ext.StoreMgr.lookup('Contracts').load();
+                    });
+                }
+            },
+            'monthplanbrowser': {
+                itemdblclick: function(grid, record) {
+                    var view = Ext.widget('monthplanform');
+                    view.setTitle('План');
+                    view.down('form').loadRecord(record);
+                    view.show();
+                }
+            },
+            'monthplanform button[action=save]': {
+                click: function(button) {
+                    entityCommit(button,'monthplan/edit', function(){
+                        Ext.StoreMgr.lookup('MonthPlans').load();
+                    });
+                }
             },
         });
     }

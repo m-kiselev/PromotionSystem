@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 
+import com.mk.web.JsonViewRepository;
 import com.mk.dao.AbstractDao;
 import com.mk.model.Identifiable;
 import com.mk.web.JsonModelAndView;
@@ -23,6 +24,9 @@ public class AbstractController {
 	
 	@Autowired
 	protected SessionFactory		sessionFactory;
+	
+	@Autowired
+	protected JsonViewRepository	jsonViews;
 	
 	/**
 	 * Standart "edit or create" method. Use only with Long Identifiable entities

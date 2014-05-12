@@ -18,9 +18,9 @@ Ext.define('app.view.LegalClientForm', {
         },
         items: [
             {xtype: 'hidden',     name: 'id', value:0},
-            {xtype: 'textfield',  name: 'fio',    fieldLabel: 'ФИО',    allowBlank:false, afterLabelTextTpl: markFieldRequired},
+            {xtype: 'textfield',  name: 'fio',    fieldLabel: 'ФИО',         allowBlank:false, afterLabelTextTpl: markFieldRequired},
+            {xtype: 'textfield',  name: 'name',   fieldLabel: 'Наименование',allowBlank:false, afterLabelTextTpl: markFieldRequired},
             {xtype: 'textfield',  name: 'details',fieldLabel: 'Реквизиты'},
-            {xtype: 'textfield',  name: 'name',   fieldLabel: 'Наименование'},
             {xtype: 'textfield',  name: 'adress', fieldLabel: 'Юр. адрес'},
             {xtype: 'textfield',  name: 'phone',  fieldLabel: 'Телефон'}
         ],

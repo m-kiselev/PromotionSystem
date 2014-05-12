@@ -4,20 +4,11 @@ Ext.define('app.view.ManagerBrowser' ,{
     closable: true,
     title: 'Менеджеры',
     store: 'Managers',
-//    features: [{
-//        ftype: 'filters',
-//        encode: true
-//    }],
     tbar:[{
         xtype: 'button',
         text: 'Добавить',
         handler: function() {
             var view = Ext.widget('managerform');
-            var form = view.down('form');
-//            addCommonFieldsToGenerateReportField(form, true, true);
-//            form.getForm().findField("detailed").setValue(true);
-//            form.getForm().findField("finance").setValue(true);
-//            view.setTitle("Новый Финансовый Отчет");
             view.show();
         }
     }, {

@@ -30,15 +30,14 @@ Ext.define('app.view.ClientPanel' ,{
         xtype: 'button',
         text: 'Добавить',
         handler: function() {
+            var view;
             if (this.up('clientpanel').down('radiogroup').getValue().rb_client == 1) {
-                var view = Ext.widget('indclientform');
-                var form = view.down('form');
+                view = Ext.widget('indclientform');
                 view.show();
             } else {
-                var view = Ext.widget('legalclientform');
-                var form = view.down('form');
-                view.show();
+                view = Ext.widget('legalclientform');
             }
+            view.show();
         }
     }, {
         xtype: 'button',

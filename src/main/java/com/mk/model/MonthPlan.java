@@ -7,11 +7,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "month_plan")
-public class MonthPlan {
+public class MonthPlan  implements Identifiable<Long> {
 
 	@Id
     @GeneratedValue
-	private Integer id;
+	private long id;
 	private String number;
 	private Integer sumVIP;
 	private Integer sumStandart;
@@ -29,10 +29,12 @@ public class MonthPlan {
 		this.countStandart = countStandart;
 	}
 	
-	public Integer getId() {
+	@Override
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getNumber() {

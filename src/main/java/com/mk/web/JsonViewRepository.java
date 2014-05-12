@@ -28,10 +28,19 @@ public class JsonViewRepository {
     public class ContentPackageMinimal {
     }
 
+    
     /************************************************************************************/
     /************************************************************************************/
     /************************************************************************************/
         
+    private static final JsonView listContractView = new JsonView(new HashMap<java.lang.Class<?>,java.lang.Class<?>>() {{
+        put(Contract.class, RemoveHibProps.class);
+    }});
+
+    public JsonView getListContractView() {
+        return listContractView;
+    }
+
     private static final JsonView minimalListView = new JsonView(new HashMap<java.lang.Class<?>,java.lang.Class<?>>() {{
         put(Contract.class, RemoveHibProps.class);
         put(Manager.class,  RemoveHibProps.class);
@@ -74,15 +83,13 @@ public class JsonViewRepository {
      * Minimum of information about entities.
      */
     private static final Map<Class<?>, JsonView> minimalViews = new HashMap<Class<?>, JsonView>(){{
-//        put(Company.class, new JsonView(Company.class, CompanyMinimal.class));
-//        put(ContentStatusForOperator.class, singleCSFOView);
-//        put(CrReward.class,                 singleRORView );
-//        put(LsReward.class,                 singleRORView);
-//        put(OperatorPriceCategory.class, new JsonView(OperatorPriceCategory.class, OperatorPriceCategoryMinimal.class));
-//        put(ContentRule.class,     listContentRuleView);
-//        put(TelecomOperator.class, listTelecomOperatorForComboView);
-//        put(ContentType.class,     listContentTypeForComboView);
-//        put(RightOwner.class,      listRightOwnerForComboView);
+        put(Contract.class,   minimalListView);
+        put(Manager.class,    minimalListView);
+        put(Service.class,    minimalListView);
+        put(MonthPlan.class,  minimalListView);
+        put(HeadDep.class,    minimalListView);
+        put(IndividualClient.class, minimalListView);
+        put(LegalClient.class,      minimalListView);
     }};
 
     public static JsonView getViewForEntity(Class<?> clazz) {

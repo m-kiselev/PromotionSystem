@@ -11,9 +11,12 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mk.controller.CreateUpdateListController;
 import com.mk.model.Identifiable;
 
 @Repository("abstractDao")
@@ -22,6 +25,8 @@ public class AbstractDao<T extends Identifiable<U>, U extends Serializable>  {
 	@Autowired
 	protected SessionFactory		sessionFactory;
 	
+	private static final Logger	log	= LoggerFactory.getLogger(AbstractDao.class);
+
 	@SuppressWarnings("unchecked")
 	public T getById(Class<T> clazz,
 			U id) {
@@ -87,6 +92,7 @@ public class AbstractDao<T extends Identifiable<U>, U extends Serializable>  {
 	public void deleteObject(Class<?> clazz, Serializable id) {
 
 		String hql = String.format("DELETE FROM %s WHERE id = :id", clazz.getName());
+		log.info("delete hql = {}", hql);
 		sessionFactory.getCurrentSession()
 						.createQuery(hql)
 						.setParameter("id", id)

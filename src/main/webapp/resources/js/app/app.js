@@ -1,5 +1,7 @@
 Ext.Loader.loadScript('app/extra/Utils.js');
+Ext.Loader.loadScript('app/extra/Renderers.js');
 Ext.Loader.loadScript('app/extra/PlainWriter.js');
+Ext.Loader.loadScript('app/extra/MonthField.js');
 
 Ext.application({
     name: 'app',
@@ -120,3 +122,33 @@ function openClientPanel() {
  * Example: {xtype: 'textfield', afterLabelTextTpl: markFieldRequired},
  */
 var markFieldRequired = '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>';
+
+/**
+ * Localisation for month names
+ */
+Ext.Date.monthNames = ['Январь','Февраль','Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+Ext.Date.monthNumbers = {
+    Январь: 0,
+    Янв: 0,
+    Февраль: 1,
+    Фев: 1,
+    Март: 2,
+    Мар: 2,
+    Апрель: 3,
+    Апр: 3,
+    Май: 4,
+    Июнь: 5,
+    Июн: 5,
+    Июль: 6,
+    Июл: 6,
+    Август: 7,
+    Авг: 7,
+    Сентябрь: 8,
+    Сен: 8,
+    Октябрь: 9,
+    Окт: 9,
+    Ноябрь: 10,
+    Ноя: 10,
+    Декабрь: 11,
+    Дек: 11
+};

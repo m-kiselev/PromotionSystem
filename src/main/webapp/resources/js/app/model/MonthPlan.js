@@ -1,21 +1,19 @@
-Ext.define('app.model.HeadDep', {
+Ext.define('app.model.MonthPlan', {
     extend   : 'Ext.data.Model',
     fields : [
           {type: 'int',   name: 'id'},
           {type: 'string',name: 'number'},
-          {type: 'string',name: 'fio'},
-          {type: 'string',name: 'phone'},
-          {type: 'string',name: 'passportData'},
-          {type: 'string',name: 'adress'},
-          {type: 'int',   name: 'monthPlanId'},
-          {type: 'string',name: 'monthPlanNumber'}
+          {type: 'int',   name: 'sumVIP'},
+          {type: 'int',   name: 'sumStandart'},
+          {type: 'int',   name: 'countVIP'},
+          {type: 'int',   name: 'countStandart'}
     ],
     idProperty: 'id',
     proxy: {
         type: 'ajax',
         api:{
-            read:'headdep/list',
-            update:'headdep/edit',
+            read:'monthplan/list',
+            update:'monthplan/edit',
         }, 
         headers: {Accept:'application/json'},
         batchActions: false,

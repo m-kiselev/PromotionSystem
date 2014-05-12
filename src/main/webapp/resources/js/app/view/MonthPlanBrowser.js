@@ -1,14 +1,14 @@
-Ext.define('app.view.HeadDepBrowser' ,{
+Ext.define('app.view.MonthPlanBrowser' ,{
     extend: 'Ext.grid.Panel',
-    alias: 'widget.headdepbrowser',
+    alias: 'widget.monthplanbrowser',
     closable: true,
-    title: 'Руководители отделов',
-    store: 'HeadDeps',
+    title: 'Планы на месяц',
+    store: 'MonthPlans',
     tbar:[{
         xtype: 'button',
         text: 'Добавить',
         handler: function() {
-            var view = Ext.widget('headdepform');
+            var view = Ext.widget('monthplanform');
             view.show();
         }
     }, {
@@ -19,7 +19,7 @@ Ext.define('app.view.HeadDepBrowser' ,{
             var recs = grid.getSelectionModel().getSelection();
             if (recs.length > 0) {
                 Ext.Msg.show({
-                    title:'Удалить работника?',
+                    title:'Удалить план?',
                     msg: 'Вы уверены что хотите удалить?',
                     buttons: Ext.Msg.YESNO,
                     buttonText:{yes:'Да', no:'Нет'},
@@ -28,7 +28,7 @@ Ext.define('app.view.HeadDepBrowser' ,{
                         if (btn === 'yes') {
                             var delRec = recs[0];
                             ajaxSave({id: delRec.data.id},
-                            '/headdep/delete',
+                            '/monthplan/delete',
                             function(resp) {
                                 grid.getStore().reload();
                             });
@@ -36,21 +36,20 @@ Ext.define('app.view.HeadDepBrowser' ,{
                     }
                 });
             } else {
-                Ext.Msg.alert('Инфо', 'Необходимо выбрать работника.');
+                Ext.Msg.alert('Инфо', 'Необходимо выбрать план.');
             }
         }
     }],
     bbar: {
         xtype:'pagingtoolbar',
-        store: 'HeadDeps',
+        store: 'MonthPlans',
         displayInfo: true
     },
     columns: [
-        {text: 'Номер',            dataIndex: 'number',    sortable: false,flex:1},
-        {text: 'ФИО',              dataIndex: 'fio',       sortable: false,flex:1},
-        {text: 'Телефон',          dataIndex: 'phone',     sortable: false,flex:1},
-        {text: 'Паспортные данные',dataIndex: 'passportData',sortable: false, flex:1},
-        {text: 'Адрес',            dataIndex: 'adress',    sortable: false, flex:1},
-        {text: 'План на месяц',    dataIndex: 'monthPlanNumber', sortable: false, flex:1}
+        {text: 'Номер',            dataIndex: 'number',       sortable: false,flex:1},
+        {text: 'Сумма по VIP',     dataIndex: 'sumVIP',       sortable: false,flex:1},
+        {text: 'Сумма по STANDART',dataIndex: 'sumStandart',  sortable: false,flex:1},
+        {text: 'Кол-во VIP',       dataIndex: 'countVIP',     sortable: false,flex:1},
+        {text: 'Кол-во STANDART',  dataIndex: 'countStandart',sortable: false,flex:1}
     ]
 });

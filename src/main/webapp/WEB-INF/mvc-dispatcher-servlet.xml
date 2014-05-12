@@ -23,7 +23,7 @@
                       <entry key="contract"  value="com.mk.model.Contract"/>
                       <entry key="manager"   value="com.mk.model.Manager"/>
                       <entry key="service"   value="com.mk.model.Service"/>
-                      <entry key="monthPlan" value="com.mk.model.MonthPlan"/>
+                      <entry key="monthplan" value="com.mk.model.MonthPlan"/>
                       <entry key="headdep"   value="com.mk.model.HeadDep"/>
                       <entry key="iclient"   value="com.mk.model.IndividualClient"/>
                       <entry key="lclient"   value="com.mk.model.LegalClient"/>
@@ -32,7 +32,6 @@
             </bean>
         </mvc:argument-resolvers>
     </mvc:annotation-driven>
-
 
     <mvc:resources mapping="/app/**" location="/resources/js/app/" />
     <mvc:resources mapping="/extjs/**" location="/resources/js/extjs/" />
@@ -61,7 +60,7 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.SQLiteDialect</prop>
                 <prop key="hibernate.show_sql">false</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
             </props>
         </property>
         <property name="packagesToScan">
@@ -78,5 +77,5 @@
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-
+    <bean id="jsonViews" class="com.mk.web.JsonViewRepository" />
 </beans>

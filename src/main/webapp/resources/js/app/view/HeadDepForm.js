@@ -20,11 +20,29 @@ Ext.define('app.view.HeadDepForm', {
             {xtype: 'hidden',     name: 'id', value:0},
             {xtype: 'textfield',  name: 'number',      fieldLabel: 'Номер',  allowBlank:false, afterLabelTextTpl: markFieldRequired},
             {xtype: 'textfield',  name: 'fio',         fieldLabel: 'ФИО',    allowBlank:false, afterLabelTextTpl: markFieldRequired},
-//            {xtype: 'numberfield',name: 'hourOfDay',   fieldLabel: 'Кол-во раб. часов',allowBlank:false, afterLabelTextTpl: markFieldRequired},
-//            {xtype: 'numberfield',name: 'salary',      fieldLabel: 'Зарплата',         allowBlank:false, afterLabelTextTpl: markFieldRequired},
             {xtype: 'textfield',  name: 'phone',       fieldLabel: 'Телефон'},
             {xtype: 'textfield',  name: 'passportData',fieldLabel: 'Паспортные данные'},
-            {xtype: 'textfield',  name: 'adress',      fieldLabel: 'Адрес'}
+            {xtype: 'textfield',  name: 'adress',      fieldLabel: 'Адрес'},
+            
+            {xtype: 'hidden', name: 'monthPlanNumber'},
+            {   xtype: 'combo', 
+                name : 'monthPlanId',
+                fieldLabel: 'План',
+                displayField: 'number',
+                valueField: 'id',
+                store: 'MonthPlans',
+                editable: false,
+                listeners: {
+                    'afterrender': function() {
+                        var store = this.getStore();
+                        store.pageSize = 100;
+                        store.load();
+                    },
+                    'change': function() {
+                        this.up('form').down('hidden[name=monthPlanNumber]').setValue(this.getRawValue());
+                    }
+                }
+            },
         ],
         buttons: [{text: 'Сохранить',action: 'save', formBind:true}]
     }]
