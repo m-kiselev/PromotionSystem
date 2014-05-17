@@ -3,6 +3,7 @@ Ext.define('app.model.Contract', {
     fields : [
           {type: 'int',    name: 'id'},
           {type: 'string', name: 'number'},
+          {type: 'int',    name: 'summ'},
           {type: 'boolean',name: 'approved'},
           {type: 'date',   name: 'approvedDate'},
           {type: 'string', name: 'comment'},

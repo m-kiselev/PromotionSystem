@@ -51,17 +51,16 @@ Ext.application({
                         '<li onclick="openBrowser(\'mainmanagerbrowser\', \'managerbrowser\')">Менеджеры</li>' +
                         '<li onclick="openBrowser(\'mainheaddepbrowser\', \'headdepbrowser\')">Руководители отделов</li></ul>' +
                         '<p>Материальные</p><ul>' +
-                        '<li onclick="openBrowser(\'maincontractbrowser\', \'contractbrowser\')">Договора</li>' +
+                        '<li onclick="openContractBrowser()">Договоры</li>' +
                         '<li onclick="openBrowser(\'mainmonthplanbrowser\', \'monthplanbrowser\')">Планы на месяц</li></ul>' +
                         '<p>Нематериальные</p><ul>' +
-                        '<li onclick="openBrowser(\'maincomplexbrowser\', \'complexbrowser\')">Комплексы</li></ul>' +
+                        '<li onclick="openBrowser(\'mainservicebrowser\', \'servicebrowser\')">Договора на услуги</li>' +
+                        '<li onclick="openBrowser(\'mainbonusbrowser\', \'bonusbrowser\')">Бонусы для сотрудников</li></ul>' +
                         '<p>Справочники</p><ul>' +
                         '<li onclick="openClientPanel()">Клиенты</li></ul>' +
                         '<p>Отчеты</p><ul>' +
                         '<li onclick="openBrowser(\'mainsalaryreportbrowser\', \'salaryreportbrowser\')">Отчет по ЗП</li>' +
                         '<li onclick="openBrowser(\'maincontractreportbrowser\', \'contractreportbrowser\')">Отчет об одобрении договоров</li>' +
-                        '<li onclick="openBrowser(\'mainheaddepreportbrowser\', \'headdepreportbrowser\')">Отчет для руководителей отделов</li>' +
-                        '<li onclick="openBrowser(\'maincomplexreportbrowser\', \'complexreportbrowser\')">Отчет по комплексам</li>' +
                         '<li onclick="openBrowser(\'mainservicereportbrowser\', \'servicereportbrowser\')">Отчет по услугам</li></ul>' +
                         '</div>'
                     }]
@@ -73,7 +72,14 @@ Ext.application({
                 xtype:'tabpanel',
                 id:'mainPanel',
                 activeTab: 0,
-                autoDestroy: true
+                autoDestroy: true,
+//                items: [{
+//                    xtype:'panel',
+//                    closable: true,
+//                    items: {
+//                        html: '<img src="resources/titul.jpg">'
+//                    }  
+//                }]
             }]
        });
    }
@@ -117,6 +123,18 @@ function openClientPanel() {
         return view;
     });
 }
+
+function openContractBrowser() {
+    addToMainTab('maincontractbrowser', function() {
+        var view = Ext.widget('contractbrowser', {
+            id: 'maincontractbrowser'
+        });
+
+        performContractBrowserFilters(view);
+        return view;
+    });
+}
+
 /**
  * Added red '*' for requared field;
  * Example: {xtype: 'textfield', afterLabelTextTpl: markFieldRequired},

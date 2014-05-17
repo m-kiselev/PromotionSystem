@@ -95,7 +95,9 @@ Ext.define('app.controller.MainController', {
             'contractform button[action=save]': {
                 click: function(button) {
                     entityCommit(button,'contract/edit', function(){
-                        Ext.StoreMgr.lookup('Contracts').load();
+//                        Ext.StoreMgr.lookup('Contracts').load();
+                        var contractbrowser = Ext.getCmp('maincontractbrowser');
+                        performContractBrowserFilters(contractbrowser);
                     });
                 }
             },

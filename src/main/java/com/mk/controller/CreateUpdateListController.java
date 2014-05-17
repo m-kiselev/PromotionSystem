@@ -83,7 +83,7 @@ public class CreateUpdateListController extends AbstractController {
 			@RequestParam(value = "limit", required = false, defaultValue = "20") Integer count,
 			@RequestParam(required = false) String startDate,
 			@RequestParam(required = false) String endDate,
-			@RequestParam(required = false) Long managerId) throws IOException, ParseException {
+			@RequestParam(required = false) Integer managerId) throws IOException, ParseException {
 
 		log.info("managerId = {}", managerId);
 		log.info("startDate = {}, endDate = {}", startDate, endDate);
@@ -94,7 +94,7 @@ public class CreateUpdateListController extends AbstractController {
         	sDate = sdf.parse(startDate);
         }
         if (endDate != null && endDate != "") {
-        	sDate = sdf.parse(startDate);
+        	eDate = sdf.parse(endDate);
         }
 
 		Integer from = (page == null) || (count == null) ? null : (page - 1) * count;

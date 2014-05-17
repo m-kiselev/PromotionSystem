@@ -131,6 +131,17 @@ function getNumericIdFromCombo(combo){
 		return id;
 };
 
+function getFirstDayCurrentMonth() {
+    var today = new Date();
+    return new Date(today.getFullYear(), today.getMonth(), 1);
+}
+
+function getLastDayCurrentMonth() {
+    var today = new Date();
+    return new Date(today.getFullYear(), today.getMonth()+1, 0);
+    
+}
+
 /***************************************
  * Function related with Ajax requests *
  ***************************************/

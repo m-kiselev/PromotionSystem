@@ -3,7 +3,8 @@ Ext.define('app.view.ContractBrowser' ,{
     alias: 'widget.contractbrowser',
     closable: true,
     title: 'Договора',
-    store: 'Contracts',
+//    store: 'Contracts',
+    store:'ext-empty-store',/*to be redefined in constructor*/
     tbar:[{
         xtype: 'button',
         text: 'Добавить',
@@ -64,6 +65,7 @@ Ext.define('app.view.ContractBrowser' ,{
     },
     {xtype: 'datefield', name: 'startDate',width: 170, fieldLabel: 'Дата начала',
         labelWidth: 75, format:'d.m.Y', submitFormat: 'm/d/Y',
+        value: getFirstDayCurrentMonth(),
         listeners: {
             'change': function() {
 //                this.up('form').down('hidden[name=managerName]').setValue(this.getRawValue());
@@ -73,6 +75,7 @@ Ext.define('app.view.ContractBrowser' ,{
     },
     {xtype: 'datefield', name: 'endDate',  width: 190, fieldLabel: 'Дата окончания',
         labelWidth: 95, format:'d.m.Y', submitFormat: 'm/d/Y',
+        value: getLastDayCurrentMonth(),
         listeners: {
             'change': function() {
 //                this.up('form').down('hidden[name=managerName]').setValue(this.getRawValue());
@@ -83,12 +86,14 @@ Ext.define('app.view.ContractBrowser' ,{
     ],
     bbar: {
         xtype:'pagingtoolbar',
-        store: 'Contracts',
+//        store: 'Contracts',
+        store:'ext-empty-store',/*to be redefined in constructor*/
         displayInfo: true
     },
     columns: [
         {text: 'Номер',      dataIndex: 'number',    sortable: false,flex:1},
-        {text: 'Одобрено',   dataIndex : 'approved', width : 70, renderer: boolRenderer}, 
+        {text: 'Одобрено',   dataIndex : 'approved', width : 70, renderer: boolRenderer},
+        {text: 'Сумма договора', dataIndex : 'summ', width : 70},
         {text: 'Дата одобрения', dataIndex: 'approvedDate',sortable: false,flex:1, renderer: myDateRenderer},
         {text: 'Статус',     dataIndex: 'status',     sortable: false, flex:1},
         {text: 'Комментарий',dataIndex: 'comment',    sortable: false, flex:1},

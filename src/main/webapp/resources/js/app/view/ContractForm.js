@@ -18,10 +18,12 @@ Ext.define('app.view.ContractForm', {
             align:'stretch'
         },
         items: [
-            {xtype: 'hidden',     name: 'id', value:0},
-            {xtype: 'textfield',  name: 'number',      fieldLabel: 'Номер',  allowBlank:false, afterLabelTextTpl: markFieldRequired},
-            {xtype: 'checkbox',  name: 'approved',      fieldLabel: 'Одобрено'},
-            {xtype: 'datefield', name: 'approvedDate',   fieldLabel: 'Дата одобрения', format:'d.m.Y', submitFormat: 'm/d/Y'},
+            {xtype: 'hidden',    name: 'id', value:0},
+            {xtype: 'textfield', name: 'number',      fieldLabel: 'Номер',  allowBlank:false, afterLabelTextTpl: markFieldRequired},
+            {xtype: 'checkbox',  name: 'approved',    fieldLabel: 'Одобрено'},
+            {xtype: 'numberfield',name: 'summ',       fieldLabel: 'Сумма договора'},
+            {xtype: 'datefield', name: 'approvedDate',fieldLabel: 'Дата одобрения', format:'d.m.Y', submitFormat: 'm/d/Y'
+                ,  allowBlank:false, afterLabelTextTpl: markFieldRequired},
             {xtype: 'combo', store: 'EnumContractStatus', fieldLabel: 'Статус', name: 'status',
                 valueField: 'id',
                 displayField: 'name',
@@ -31,7 +33,7 @@ Ext.define('app.view.ContractForm', {
             {xtype: 'textfield',  name: 'comment',      fieldLabel: 'Коментарий'},
 
             // manager fields
-            {xtype: 'hidden', name: 'monthPlanNumber'},
+            {xtype: 'hidden',     name: 'managerName'},
             {   xtype: 'combo', 
                 name : 'managerId',
                 fieldLabel: 'Менеджер',
@@ -47,7 +49,7 @@ Ext.define('app.view.ContractForm', {
                         store.load();
                     },
                     'change': function() {
-                        this.up('form').down('hidden[name=monthPlanNumber]').setValue(this.getRawValue());
+                        this.up('form').down('hidden[name=managerName]').setValue(this.getRawValue());
                     }
                 }
             },

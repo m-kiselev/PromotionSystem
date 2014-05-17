@@ -7,6 +7,6 @@ import com.mk.model.Contract;
 
 public interface ContractDao {
 
-	List<Contract> listContracts(Long managerId, Date startDate, Date endDate, Integer from, Integer count);
-	Long countContracts(Long managerId, Date startDate, Date endDate);
+	List<Contract> listContracts(Integer managerId, Date startDate, Date endDate, Integer from, Integer count);
+	Long countContracts(Integer managerId, Date startDate, Date endDate);
 }

@@ -21,6 +21,7 @@ public class Contract implements Identifiable<Long> {
 	private long id;
 	private String number;
 	private boolean isApproved = false;
+	private Integer summ;
 	
 	@Temporal(TemporalType.DATE)
 	private Date approvedDate;
@@ -136,12 +137,18 @@ public class Contract implements Identifiable<Long> {
 	public void setClientName(String clientName) {
 		this.clientName = clientName;
 	}
-	
+	public Integer getSumm() {
+		return summ;
+	}
+
+	public void setSumm(Integer summ) {
+		this.summ = summ;
+	}
+
 	@Override
 	public String toString() {
 		return String.format("Contract: [id = %s, number = %s, isApproved = %s, approvedDate = %s, comment = %s, status = %s]",
 				id, number, isApproved, approvedDate, comment, status);
 	}
-
 
 }
