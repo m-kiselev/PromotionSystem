@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mk.model.*;
+import com.mk.view.ContractReportRecord;
 
 @SuppressWarnings("serial")
 public class JsonViewRepository {
@@ -39,6 +40,21 @@ public class JsonViewRepository {
 
     public JsonView getListContractView() {
         return listContractView;
+    }
+    
+    private static final JsonView listContractReportRecordView = new JsonView(new HashMap<java.lang.Class<?>,java.lang.Class<?>>() {{
+    	put(ContractReportRecord.class, RemoveHibProps.class);
+    }});
+    
+    public JsonView getListContractReportRecordView() {
+    	return listContractReportRecordView;
+    }
+    private static final JsonView listSalaryReportRecordView = new JsonView(new HashMap<java.lang.Class<?>,java.lang.Class<?>>() {{
+    	put(Contract.class, RemoveHibProps.class);
+    }});
+    
+    public JsonView getListSalaryReportRecordView() {
+    	return listSalaryReportRecordView;
     }
 
     private static final JsonView minimalListView = new JsonView(new HashMap<java.lang.Class<?>,java.lang.Class<?>>() {{

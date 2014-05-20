@@ -22,15 +22,10 @@ public class ContractDaoImpl extends AbstractDao<Contract, Long> implements Cont
     @Autowired
     private SessionFactory sessionFactory;
 
-//    SELECT * FROM contract
-//    where  date(SUBSTR(approvedDate, 1,10), 'unixepoch') >= date('2014-05-13')
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Contract> listContracts(Integer managerId, Date startDate, Date endDate, Integer from, Integer count) {
 
-		
-		System.out.println("===========");
-		System.out.println(startDate);
-		System.out.println(endDate);
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String sDate = "'" + dateFormat.format(startDate) + "'";
 		String eDate = "'" + dateFormat.format(endDate) + "'";
@@ -47,14 +42,7 @@ public class ContractDaoImpl extends AbstractDao<Contract, Long> implements Cont
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(hql);
-//				.setParameter("startDate", sDate)
-//				.setParameter("endDate",   eDate);
 		
-		System.out.println(sDate);
-		System.out.println(eDate);
-		System.out.println(query.toString());
-		System.out.println(hql);
-
 		if (managerId != null) {
 			query.setParameter("managerId", managerId);
 		}
@@ -81,8 +69,6 @@ public class ContractDaoImpl extends AbstractDao<Contract, Long> implements Cont
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(hql);
-//				.setParameter("startDate", sDate)
-//				.setParameter("endDate",   eDate);
 
 		if (managerId != null) {
 			query.setParameter("managerId", managerId);

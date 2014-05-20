@@ -32,6 +32,13 @@
             <version>${org.springframework-version}</version>
         </dependency>
 
+       <!-- Excel library --> 
+       <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>3.6</version>
+       </dependency>
+
         <!-- Jackson JSON Mapper 
         <dependency>
             <groupId>org.codehaus.jackson</groupId>

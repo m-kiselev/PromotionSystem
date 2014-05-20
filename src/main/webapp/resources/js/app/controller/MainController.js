@@ -2,7 +2,7 @@ Ext.define('app.controller.MainController', {
     extend: 'Ext.app.Controller',
     views:  ['ManagerBrowser', 'ManagerForm', 'HeadDepBrowser', 'HeadDepForm', 'ClientPanel','IndividClientBrowser', 'IndividClientForm',
              'LegalClientBrowser', 'LegalClientForm', 'ContractBrowser', 'ContractForm', 'SelectClientWindow', 'MonthPlanBrowser',
-             'MonthPlanForm', 'ContractReportBrowser'],
+             'MonthPlanForm'],
     stores: ['Managers', 'HeadDeps', 'IndividClients', 'LegalClients', 'Contracts', 'EnumContractStatus', 'MonthPlans'],
     models: ['Manager', 'HeadDep', 'IndividClient', 'LegalClient', 'Contract', 'MonthPlan'],
     init: function(application) {
@@ -115,7 +115,7 @@ Ext.define('app.controller.MainController', {
                         Ext.StoreMgr.lookup('MonthPlans').load();
                     });
                 }
-            },
+            }
         });
     }
 });

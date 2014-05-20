@@ -2,8 +2,7 @@ Ext.define('app.view.ContractBrowser' ,{
     extend: 'Ext.grid.Panel',
     alias: 'widget.contractbrowser',
     closable: true,
-    title: 'Договора',
-//    store: 'Contracts',
+    title: 'Договоры',
     store:'ext-empty-store',/*to be redefined in constructor*/
     tbar:[{
         xtype: 'button',
@@ -86,7 +85,6 @@ Ext.define('app.view.ContractBrowser' ,{
     ],
     bbar: {
         xtype:'pagingtoolbar',
-//        store: 'Contracts',
         store:'ext-empty-store',/*to be redefined in constructor*/
         displayInfo: true
     },

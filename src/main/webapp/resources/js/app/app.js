@@ -6,7 +6,7 @@ Ext.Loader.loadScript('app/extra/MonthField.js');
 Ext.application({
     name: 'app',
     appFolder: 'app',
-    controllers: ['MainController'],
+    controllers: ['MainController', 'ReportController'],
 
     launch: function() {
         Ext.create('Ext.container.Viewport', {
