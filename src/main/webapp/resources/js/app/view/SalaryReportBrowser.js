@@ -10,7 +10,7 @@ Ext.define('app.view.SalaryReportBrowser' ,{
         name: 'period', width: 220, fieldLabel: 'Отчетный период', labelWidth: 105,
         listeners: {
             'change': function() {
-//                performContractBrowserFilters(this.up('contractbrowser'));
+                reconfigureSalaryReportBrowser(this.up('grid'));
             }
         }
     }],
@@ -29,3 +29,15 @@ Ext.define('app.view.SalaryReportBrowser' ,{
         {text: 'Итого',            dataIndex: 'summ',       sortable: false,flex:1}
     ]
 });
+
+
+function reconfigureSalaryReportBrowser(view) {
+    var store = Ext.create('app.store.SalaryReportRecords');
+
+    var date = view.down('monthfield[name=period]').getValue();
+    store.proxy.extraParams = {'date': Ext.Date.format(date, 'd.m.Y')};
+    store.load();
+
+    view.reconfigure(store);
+    view.down('pagingtoolbar').bindStore(store);
+}

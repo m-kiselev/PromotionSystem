@@ -38,7 +38,7 @@ public class CreateUpdateListController extends AbstractController {
 
 	@SuppressWarnings({ "unchecked" })
 	@RequestMapping(method = RequestMethod.POST, value = "/{entityName:contract|manager|service|headdep|"
-			+ "iclient|lclient|monthplan}/delete")
+			+ "iclient|lclient|monthplan|servicecontract}/delete")
 	@ResponseBody
 	@Transactional
 	public Object delete(@DefinedFromRequest Object entity) {
@@ -51,7 +51,8 @@ public class CreateUpdateListController extends AbstractController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(
 			method = RequestMethod.POST,
-			value = "/{entityName:contract|manager|service|headdep|iclient|lclient|monthplan}/edit")
+			value = "/{entityName:contract|manager|service|headdep|iclient|lclient|monthplan|"
+					+ "servicecontract}/edit")
 	@ResponseBody
 	@Transactional
 	public Object createOrUpdate(@DefinedFromRequest Class<?> clazz,
@@ -66,7 +67,8 @@ public class CreateUpdateListController extends AbstractController {
 	@Transactional(readOnly = true)
 	@RequestMapping(
 			method = RequestMethod.GET,
-			value = "/{entityName:manager|service|contact|headdep|iclient|lclient|monthplan}/list",
+			value = "/{entityName:manager|service|contact|headdep|iclient|lclient|monthplan|"
+					+ "servicecontract}/list",
 			produces = "application/json")
 	public Object list(@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "limit", required = false) Integer count,

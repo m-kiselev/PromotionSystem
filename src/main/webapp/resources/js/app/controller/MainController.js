@@ -2,9 +2,10 @@ Ext.define('app.controller.MainController', {
     extend: 'Ext.app.Controller',
     views:  ['ManagerBrowser', 'ManagerForm', 'HeadDepBrowser', 'HeadDepForm', 'ClientPanel','IndividClientBrowser', 'IndividClientForm',
              'LegalClientBrowser', 'LegalClientForm', 'ContractBrowser', 'ContractForm', 'SelectClientWindow', 'MonthPlanBrowser',
-             'MonthPlanForm'],
-    stores: ['Managers', 'HeadDeps', 'IndividClients', 'LegalClients', 'Contracts', 'EnumContractStatus', 'MonthPlans'],
-    models: ['Manager', 'HeadDep', 'IndividClient', 'LegalClient', 'Contract', 'MonthPlan'],
+             'MonthPlanForm', 'ServiceContractBrowser', 'ServiceContractForm'],
+    stores: ['Managers', 'HeadDeps', 'IndividClients', 'LegalClients', 'Contracts', 'EnumContractStatus',
+             'MonthPlans', 'ServiceContracts', 'EnumServiceType'],
+    models: ['Manager', 'HeadDep', 'IndividClient', 'LegalClient', 'Contract', 'MonthPlan', 'ServiceContract'],
     init: function(application) {
         this.control({
             'managerbrowser': {
@@ -113,6 +114,21 @@ Ext.define('app.controller.MainController', {
                 click: function(button) {
                     entityCommit(button,'monthplan/edit', function(){
                         Ext.StoreMgr.lookup('MonthPlans').load();
+                    });
+                }
+            },
+            'servicebrowser': {
+                itemdblclick: function(grid, record) {
+                    var view = Ext.widget('servicecontractform');
+                    view.setTitle('Договор на услуги');
+                    view.down('form').loadRecord(record);
+                    view.show();
+                }
+            },
+            'servicecontractform button[action=save]': {
+                click: function(button) {
+                    entityCommit(button,'servicecontract/edit', function(){
+                        Ext.StoreMgr.lookup('ServiceContracts').load();
                     });
                 }
             }

@@ -20,13 +20,14 @@
             <bean class="com.mk.web.ClassNameArgumentResolver">
                 <property name="mappings">
                   <map>
-                      <entry key="contract"  value="com.mk.model.Contract"/>
-                      <entry key="manager"   value="com.mk.model.Manager"/>
-                      <entry key="service"   value="com.mk.model.Service"/>
-                      <entry key="monthplan" value="com.mk.model.MonthPlan"/>
-                      <entry key="headdep"   value="com.mk.model.HeadDep"/>
-                      <entry key="iclient"   value="com.mk.model.IndividualClient"/>
-                      <entry key="lclient"   value="com.mk.model.LegalClient"/>
+                      <entry key="contract"        value="com.mk.model.Contract"/>
+                      <entry key="manager"         value="com.mk.model.Manager"/>
+                      <entry key="service"         value="com.mk.model.Service"/>
+                      <entry key="monthplan"       value="com.mk.model.MonthPlan"/>
+                      <entry key="headdep"         value="com.mk.model.HeadDep"/>
+                      <entry key="iclient"         value="com.mk.model.IndividualClient"/>
+                      <entry key="lclient"         value="com.mk.model.LegalClient"/>
+                      <entry key="servicecontract" value="com.mk.model.ServiceContract"/>
                   </map>
                 </property>
             </bean>
@@ -67,7 +68,7 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.SQLiteDialect</prop>
                 <prop key="hibernate.show_sql">false</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
             </props>
         </property>
         <property name="packagesToScan">

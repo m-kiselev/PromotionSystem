@@ -22,6 +22,17 @@ function shortTitleRenderer(value){
 function shortTitlesRenderer(value){
     return fetchField(value,"shortTitle");
 }
+
+function serviceTypeRender(value) {
+    if (value != null) {
+        if (value == 'WATERPOOL')  return 'Бассейн';
+        if (value == 'SPORTHALL')  return 'Спорт зал';
+        if (value == 'FITNESHALL') return 'Фитнес зал';
+        if (value == 'PAINTBALL')  return 'Пейнтбол';
+        if (value == 'SAUNA')      return 'Сауна';
+        if (value == 'MASSAGE')    return 'Массажный кабинет';
+    }
+}
 //function myLSRenderer(value,b,rec){
 //    if (value != null) {
 //        if (typeof rec.data.licenseAgreement != 'undefined') {
@@ -29,12 +40,6 @@ function shortTitlesRenderer(value){
 //        } else {
 //            return "<a onclick='openLicenseAgreementByid("+rec.data.parentDocumentId+")'>"+value.number+"</a>";
 //        }
-//    }
-//}
-//function psDocumentStatusRenderer(value){
-//    if (value != null) {
-//        if (value == 'STORED')    return "Записан";
-//        if (value == 'ACCOUNTED') return "Проведен";
 //    }
 //}
 

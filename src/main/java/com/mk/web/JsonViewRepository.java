@@ -65,6 +65,7 @@ public class JsonViewRepository {
         put(HeadDep.class,  RemoveHibProps.class);
         put(IndividualClient.class, RemoveHibProps.class);
         put(LegalClient.class,      RemoveHibProps.class);
+        put(ServiceContract.class,  RemoveHibProps.class);
     }});
 
     public JsonView getMinimalListView() {
@@ -82,6 +83,7 @@ public class JsonViewRepository {
         put(HeadDep.class,    minimalListView);
         put(IndividualClient.class, minimalListView);
         put(LegalClient.class,      minimalListView);
+        put(ServiceContract.class,  minimalListView);
     }};
 
     public static JsonView getViewForList(Class<?> clazz) {
@@ -106,6 +108,7 @@ public class JsonViewRepository {
         put(HeadDep.class,    minimalListView);
         put(IndividualClient.class, minimalListView);
         put(LegalClient.class,      minimalListView);
+        put(ServiceContract.class,  minimalListView);
     }};
 
     public static JsonView getViewForEntity(Class<?> clazz) {
